@@ -1,6 +1,6 @@
 import 'package:e_commerce/config/routes_manager/routes.dart';
 import 'package:e_commerce/features/auth/presentation/screens/sign_in_screen.dart';
-import 'package:e_commerce/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:e_commerce/features/auth/presentation/screens/register_screen.dart';
 import 'package:e_commerce/features/cart/screens/cart_screen.dart';
 import 'package:e_commerce/features/main_layout/main_layout.dart';
 import 'package:e_commerce/features/product_details/presentation/screen/product_details.dart';
@@ -25,7 +25,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SignInScreen());
 
       case Routes.signUpRoute:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       default:
         return unDefinedRoute();
     }
