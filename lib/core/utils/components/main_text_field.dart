@@ -86,6 +86,7 @@ class _BuildTextFieldState extends State<BuildTextField> {
                       ColorManager.transparent)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: TextFormField(
+            cursorErrorColor: Colors.red,
             maxLines: widget.maxLines ?? 1,
             controller: widget.controller,
             focusNode: widget.focusNode,
@@ -160,7 +161,7 @@ class _BuildTextFieldState extends State<BuildTextField> {
                 ),
                 child: Text(
                   errorText!,
-                  style: getMediumStyle(color: ColorManager.white)
+                  style: getMediumStyle(color: ColorManager.error)
                       .copyWith(fontSize: 18.sp),
                 ),
               ),

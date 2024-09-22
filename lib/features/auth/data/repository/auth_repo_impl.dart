@@ -3,7 +3,9 @@ import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/features/auth/data/data_source/remote/base_auth_remote_data_source.dart';
 import 'package:e_commerce/features/auth/domain/entity/register_entity.dart';
 import 'package:e_commerce/features/auth/domain/repository/base_auth_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: BaseAuthRepo)
 class AuthRepoImpl implements BaseAuthRepo {
   BaseAuthRemoteDataSource baseAuthRemoteDataSource;
 

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/core/api/api_constant.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class ApiManager {
   late Dio dio;
 
@@ -10,8 +12,13 @@ class ApiManager {
 
   Future<Response> getData(String endpoint,
       {Map<String, dynamic>? queryParameters}) async {
-    return await dio.get(ApiConstant.baseUrl + endpoint,
-        queryParameters: queryParameters);
+    return await dio.get(
+      ApiConstant.baseUrl + endpoint,
+      queryParameters: queryParameters,
+      options: Options(
+        validateStatus: (status) => true,
+      ),
+    );
   }
 
   Future<Response> postData(
@@ -22,7 +29,10 @@ class ApiManager {
     return await dio.post(
       ApiConstant.baseUrl + endpoint,
       data: body,
-      options: Options(headers: headers),
+      options: Options(
+        headers: headers,
+        validateStatus: (status) => true,
+      ),
     );
   }
 }
