@@ -26,8 +26,12 @@ class RegisterCubit extends Cubit<RegisterState> {
         phoneController.text);
 
     either.fold(
-        (failure) => emit(RegisterErrorState(failure: failure)),
-        (registerModel) =>
-            emit(RegisterSuccessState(registerEntity: registerModel)));
+      (failure) => emit(
+        RegisterErrorState(failure: failure),
+      ),
+      (registerModel) => emit(
+        RegisterSuccessState(registerEntity: registerModel),
+      ),
+    );
   }
 }

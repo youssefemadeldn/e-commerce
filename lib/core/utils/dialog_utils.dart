@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class DialogUtils {
@@ -7,13 +8,21 @@ class DialogUtils {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: ColorManager.primary,
             content: Row(
               children: [
-                const CircularProgressIndicator(),
+                CircularProgressIndicator(
+                  color: ColorManager.white,
+                ),
                 const SizedBox(
                   width: 12,
                 ),
-                Text(message),
+                Text(
+                  message,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: ColorManager.white,
+                      ),
+                ),
               ],
             ),
           );
@@ -35,12 +44,20 @@ class DialogUtils {
   }) {
     List<Widget> actions = [];
     if (posActionName != null) {
-      actions.add(TextButton(
+      actions.add(
+        TextButton(
           onPressed: () {
             Navigator.pop(context);
             posAction?.call();
           },
-          child: Text(posActionName)));
+          child: Text(
+            posActionName,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: ColorManager.white,
+                ),
+          ),
+        ),
+      );
     }
     if (negActionName != null) {
       actions.add(TextButton(
@@ -54,10 +71,23 @@ class DialogUtils {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text(message),
-            title: Text(title),
+            content: Text(
+              message,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: ColorManager.white,
+                  ),
+            ),
+            title: Text(
+              title,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: ColorManager.white,
+                  ),
+            ),
             actions: actions,
-            titleTextStyle: Theme.of(context).textTheme.titleMedium,
+            titleTextStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: ColorManager.white,
+                ),
+            backgroundColor: ColorManager.primary,
           );
         });
   }

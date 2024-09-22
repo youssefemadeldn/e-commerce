@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/features/auth/data/data_source/remote/base_auth_remote_data_source.dart';
+import 'package:e_commerce/features/auth/domain/entity/login_entity.dart';
 import 'package:e_commerce/features/auth/domain/entity/register_entity.dart';
 import 'package:e_commerce/features/auth/domain/repository/base_auth_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -21,6 +22,20 @@ class AuthRepoImpl implements BaseAuthRepo {
     var either = await baseAuthRemoteDataSource.register(
         name, email, password, rePassword, phone);
 
-    return either.fold((error) => left(error), (response) => right(response));
+    return either.fold(
+      (error) => left(error),
+      (response) => right(response),
+    );
+  }
+
+  @override
+  Future<Either<Failure, LoginEntity>> login(
+      {required String email, required String password}) async {
+    var either = await baseAuthRemoteDataSource.login(email, password);
+
+    return either.fold(
+      (failure) => left(failure),
+      (loginModel) => Right(loginModel),
+    );
   }
 }
