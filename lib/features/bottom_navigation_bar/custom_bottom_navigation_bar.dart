@@ -1,43 +1,37 @@
 import 'package:e_commerce/core/utils/assets_manager.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/components/home_screen_app_bar.dart';
-import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/categories_tab.dart';
-import 'package:e_commerce/features/bottom_navigation_bar/favourite_tab/presentation/favourite_tab.dart';
-import 'package:e_commerce/features/bottom_navigation_bar/profile_tab/presentation/profile_tab.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home_tab/presentation/home_tab.dart';
+class CustomBottomNavigationBar extends StatelessWidget {
+  CustomBottomNavigationBar({super.key});
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  BottomNavigationBarCubit viewModel = BottomNavigationBarCubit();
 
-  @override
-  State<CustomBottomNavigationBar> createState() =>
-      _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int currentIndex = 0;
-  List<Widget> tabs = [
-    const HomeTab(),
-    const CategoriesTab(),
-    const FavoriteScreen(),
-    const ProfileTab(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const HomeScreenAppBar(),
       extendBody: false,
-      body: tabs[currentIndex],
+      body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
+        bloc: viewModel,
+        builder: (context, state) {
+          if (state is BottomNavigationBarChangeIndexState) {
+            return viewModel.tabs[viewModel.currentIndex];
+          }
+          return Container();
+        },
+      ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.1,
           child: BottomNavigationBar(
-            currentIndex: currentIndex,
-            onTap: (value) => changeSelectedIndex(value),
+            currentIndex: viewModel.currentIndex,
+            onTap: (value) => viewModel.changeSelectedIndex(value),
             backgroundColor: ColorManager.primary,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: ColorManager.primary,
@@ -55,12 +49,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         ),
       ),
     );
-  }
-
-  changeSelectedIndex(int selectedIndex) {
-    setState(() {
-      currentIndex = selectedIndex;
-    });
   }
 }
 

@@ -13,8 +13,7 @@ class RouteGenerator {
       case Routes.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartScreen());
       case Routes.mainRoute:
-        return MaterialPageRoute(
-            builder: (_) => const CustomBottomNavigationBar());
+        return MaterialPageRoute(builder: (_) => CustomBottomNavigationBar());
 
       case Routes.productsScreenRoute:
         return MaterialPageRoute(builder: (_) => const ProductsScreen());
