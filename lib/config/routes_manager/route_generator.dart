@@ -2,7 +2,7 @@ import 'package:e_commerce/config/routes_manager/routes.dart';
 import 'package:e_commerce/features/auth/presentation/screens/login_screen.dart';
 import 'package:e_commerce/features/auth/presentation/screens/register_screen.dart';
 import 'package:e_commerce/features/cart/screens/cart_screen.dart';
-import 'package:e_commerce/features/main_layout/main_layout.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:e_commerce/features/product_details/presentation/screen/product_details.dart';
 import 'package:e_commerce/features/products_screen/presentation/screens/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,8 @@ class RouteGenerator {
       case Routes.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartScreen());
       case Routes.mainRoute:
-        return MaterialPageRoute(builder: (_) => const MainLayout());
+        return MaterialPageRoute(
+            builder: (_) => const CustomBottomNavigationBar());
 
       case Routes.productsScreenRoute:
         return MaterialPageRoute(builder: (_) => const ProductsScreen());

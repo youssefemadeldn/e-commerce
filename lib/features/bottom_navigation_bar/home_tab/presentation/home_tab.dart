@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:e_commerce/core/utils/assets_manager.dart';
-import 'package:e_commerce/features/main_layout/home/presentation/widgets/custom_category_widget.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/widgets/custom_category_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

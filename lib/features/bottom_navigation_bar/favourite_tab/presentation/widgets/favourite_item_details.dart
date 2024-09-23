@@ -2,7 +2,7 @@ import 'package:colornames/colornames.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/styles_manager.dart';
 import 'package:e_commerce/core/utils/values_manager.dart';
-import 'package:e_commerce/features/main_layout/favourite/presentation/widgets/custom_txt_widget.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/favourite_tab/presentation/widgets/custom_txt_widget.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

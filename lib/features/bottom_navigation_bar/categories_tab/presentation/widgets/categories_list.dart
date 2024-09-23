@@ -1,6 +1,6 @@
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/values_manager.dart';
-import 'package:e_commerce/features/main_layout/categories/presentation/widgets/category_item.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesList extends StatefulWidget {

@@ -1,21 +1,22 @@
 import 'package:e_commerce/core/utils/assets_manager.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/components/home_screen_app_bar.dart';
-import 'package:e_commerce/features/main_layout/categories/presentation/categories_tab.dart';
-import 'package:e_commerce/features/main_layout/favourite/presentation/favourite_screen.dart';
-import 'package:e_commerce/features/main_layout/profile_tab/presentation/profile_tab.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/categories_tab.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/favourite_tab/presentation/favourite_tab.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/profile_tab/presentation/profile_tab.dart';
 import 'package:flutter/material.dart';
 
-import 'home/presentation/home_tab.dart';
+import 'home_tab/presentation/home_tab.dart';
 
-class MainLayout extends StatefulWidget {
-  const MainLayout({super.key});
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({super.key});
 
   @override
-  State<MainLayout> createState() => _MainLayoutState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
-class _MainLayoutState extends State<MainLayout> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int currentIndex = 0;
   List<Widget> tabs = [
     const HomeTab(),
