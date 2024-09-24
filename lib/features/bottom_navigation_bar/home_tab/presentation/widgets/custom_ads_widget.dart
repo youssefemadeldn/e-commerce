@@ -1,21 +1,35 @@
 import 'dart:async';
 
+import 'package:e_commerce/core/utils/assets_manager.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAdsWidget extends StatelessWidget {
-  final List<String> adsImages;
-  final int currentIndex;
-  final Timer timer;
-
+class CustomAdsWidget extends StatefulWidget {
   const CustomAdsWidget({
     super.key,
-    required this.adsImages,
-    required this.currentIndex,
-    required this.timer,
   });
+
+  @override
+  State<CustomAdsWidget> createState() => _CustomAdsWidgetState();
+}
+
+class _CustomAdsWidgetState extends State<CustomAdsWidget> {
+  int currentIndex = 0;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startImageSwitching();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,4 +74,18 @@ class CustomAdsWidget extends StatelessWidget {
       ),
     );
   }
+
+  void _startImageSwitching() {
+    _timer = Timer.periodic(const Duration(milliseconds: 2500), (Timer timer) {
+      setState(() {
+        currentIndex = (currentIndex + 1) % adsImages.length;
+      });
+    });
+  }
+
+  final List<String> adsImages = [
+    ImageAssets.carouselSlider1,
+    ImageAssets.carouselSlider2,
+    ImageAssets.carouselSlider3,
+  ];
 }
