@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce/core/api/api_constant.dart';
 import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/data/data_source/remote/base_remote_home_tab_data_source.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/home_tab/data/models/brands_model.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/data/models/category_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,8 +19,10 @@ class RemoteHomeTabDataSourceImpl implements BaseRemoteHomeTabDataSource {
           connectivityResult.contains(ConnectivityResult.mobile)) {
         //  Internet Connection Case
         var response = await Dio().get(
-            ApiConstant.baseUrl + ApiConstant.getAllCategoriesEP,
-            queryParameters: {});
+          ApiConstant.baseUrl + ApiConstant.getAllCategoriesEP,
+          queryParameters: {},
+          options: Options(validateStatus: (status) => true),
+        );
 
         CategoryModel categoryModel = CategoryModel.fromJson(response.data);
 
@@ -35,6 +38,41 @@ class RemoteHomeTabDataSourceImpl implements BaseRemoteHomeTabDataSource {
       }
     } catch (e) {
       return Left(Failure(errorMessage: "Failure: ${e.toString()}"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BrandsModel>> getAllBrands() async {
+    try {
+      var resultConnection = await Connectivity().checkConnectivity();
+
+      if (resultConnection.contains(ConnectivityResult.wifi) ||
+          resultConnection.contains(ConnectivityResult.mobile)) {
+        // InterNet Connection Case
+        var response = await Dio().get(
+          ApiConstant.baseUrl + ApiConstant.getAllBrandsEP,
+          data: {},
+          options: Options(validateStatus: (status) => true),
+        );
+
+        BrandsModel brandsModel = BrandsModel.fromJson(response.data);
+
+        if (response.statusCode! >= 200 || response.statusCode! < 300) {
+          // Success case 200 Ok
+
+          return Right(brandsModel);
+        } else {
+          // Server error Case 500
+
+          return Left(ServerFailure(errorMessage: brandsModel.message!));
+        }
+      } else {
+        // Network error Case 300
+
+        return Left(NetworkFailure(errorMessage: 'Check Internet'));
+      }
+    } catch (e) {
+      return Left(Failure(errorMessage: 'Failure: ${e.toString()}'));
     }
   }
 }

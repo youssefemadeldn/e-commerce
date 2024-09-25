@@ -46,7 +46,7 @@ class AuthRemoteDataSourceImpl implements BaseAuthRemoteDataSource {
     } else {
       // No internet Case
 
-      return Left(NetworkFailure(errorMessage: "Check InterNet"));
+      return Left(NetworkFailure(errorMessage: "Check Internet"));
     }
   }
 

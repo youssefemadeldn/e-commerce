@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/styles_manager.dart';
-import 'package:e_commerce/features/bottom_navigation_bar/home_tab/domain/entity/category_entity.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/home_tab/domain/entity/brands_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomCategoryWidget extends StatelessWidget {
-  DataCategoryEntity category;
-  CustomCategoryWidget({super.key, required this.category});
+class BrandWidget extends StatelessWidget {
+  DataBrandsEntity brands;
+  BrandWidget({super.key, required this.brands});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class CustomCategoryWidget extends StatelessWidget {
       children: [
         CachedNetworkImage(
           height: 100.h,
-          width: 100.w,
+          width: 100.h,
           fit: BoxFit.cover,
-          imageUrl: category.image ?? '',
+          imageUrl: brands.image ?? '',
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(
               color: ColorManager.primaryDark,
@@ -54,7 +54,7 @@ class CustomCategoryWidget extends StatelessWidget {
 
         SizedBox(height: 8.h),
         Text(
-          category.name!.split(' ').first ?? '',
+          brands.name ?? '',
           style: getRegularStyle(color: ColorManager.darkBlue, fontSize: 14.sp),
         ),
       ],

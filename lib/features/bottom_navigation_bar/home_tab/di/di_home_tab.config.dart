@@ -30,6 +30,7 @@ import '../data/data_source/remote/remote_home_tab_data_source_impl.dart'
     as _i766;
 import '../data/rpo/home_tab_repo_impl.dart' as _i462;
 import '../domain/repo/base_home_tab_repo.dart' as _i944;
+import '../domain/use_case/get_all_brands_use_case.dart' as _i797;
 import '../domain/use_case/get_all_categories_use_case.dart' as _i28;
 import '../presentation/controller/home_tab_cubit/home_tab_cubit.dart' as _i473;
 
@@ -59,12 +60,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i138.RegisterUseCase(baseAuthRepo: gh<_i142.BaseAuthRepo>()));
     gh.factory<_i28.GetAllCategoriesUseCase>(() => _i28.GetAllCategoriesUseCase(
         baseHomeTabRepo: gh<_i944.BaseHomeTabRepo>()));
+    gh.factory<_i797.GetAllBrandsUseCase>(() => _i797.GetAllBrandsUseCase(
+        baseHomeTabRepo: gh<_i944.BaseHomeTabRepo>()));
     gh.factory<_i501.LoginCubit>(
         () => _i501.LoginCubit(gh<_i14.LoginUseCase>()));
+    gh.factory<_i473.HomeTabCubit>(() => _i473.HomeTabCubit(
+          getAllCategoriesUseCase: gh<_i28.GetAllCategoriesUseCase>(),
+          getAllBrandsUseCase: gh<_i797.GetAllBrandsUseCase>(),
+        ));
     gh.factory<_i451.RegisterCubit>(() =>
         _i451.RegisterCubit(registerUseCase: gh<_i138.RegisterUseCase>()));
-    gh.factory<_i473.HomeTabCubit>(() => _i473.HomeTabCubit(
-        getAllCategoriesUseCase: gh<_i28.GetAllCategoriesUseCase>()));
     return this;
   }
 }

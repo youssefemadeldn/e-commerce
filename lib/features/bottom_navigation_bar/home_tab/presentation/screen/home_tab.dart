@@ -1,9 +1,8 @@
-import 'dart:async';
-import 'package:e_commerce/core/utils/assets_manager.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/features/auth/di/di_auth.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/controller/home_tab_cubit/home_tab_cubit.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/controller/home_tab_cubit/home_tab_state.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/widgets/brand_widget.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/widgets/custom_ads_widget.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/widgets/custom_brand_widget.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/widgets/custom_category_widget.dart';
@@ -20,7 +19,9 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeTabCubit, HomeTabState>(
-      bloc: viewModel..getAllCategories(),
+      bloc: viewModel
+        ..getAllCategories()
+        ..getAllBrands(),
       builder: (context, state) {
         return SingleChildScrollView(
           child: Column(
@@ -51,19 +52,28 @@ class HomeTab extends StatelessWidget {
                     ),
               SizedBox(height: 12.h),
               CustomSectionBar(sectionNname: 'Brands', function: () {}),
-              SizedBox(
-                height: 270.h,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return const CustomBrandWidget();
-                  },
-                  itemCount: 20,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                ),
-              ),
+              viewModel.brandsList.isEmpty
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryDark,
+                      ),
+                    )
+                  : SizedBox(
+                      height: 270.h,
+                      child: GridView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return BrandWidget(
+                            brands: viewModel.brandsList[index],
+                          );
+                        },
+                        itemCount: viewModel.brandsList.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                      ),
+                    ),
               // CustomSectionBar(
               //   sectionNname: 'Most Selling Products',
               //   function: () {},

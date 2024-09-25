@@ -9,4 +9,7 @@ class ApiConstant {
 
   // https://ecommerce.routemisr.com/api/v1/categories
   static const String getAllCategoriesEP = '/api/v1/categories';
+
+  // https://ecommerce.routemisr.com/api/v1/brands
+  static const String getAllBrandsEP = '/api/v1/brands';
 }
