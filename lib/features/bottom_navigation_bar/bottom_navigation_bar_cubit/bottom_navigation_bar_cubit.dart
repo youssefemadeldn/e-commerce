@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/categories_tab.dart';
+import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/view/categories_tab.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/favourite_tab/presentation/favourite_tab.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/home_tab/presentation/screen/home_tab.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/profile_tab/presentation/profile_tab.dart';

@@ -32,19 +32,20 @@ class SubCategoriesList extends StatelessWidget {
           ),
           // the grid view of the subcategories
           SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                childCount: 26,
-                (context, index) => SubCategoryItem(
-                    'Watches',
-                    ImageAssets.subcategoryCardImage,
-                    goToCategoryProductsListScreen),
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 0.75,
-                mainAxisSpacing: AppSize.s8,
-                crossAxisSpacing: AppSize.s8,
-              ))
+            delegate: SliverChildBuilderDelegate(
+              childCount: 26,
+              (context, index) => SubCategoryItem(
+                  'Watches',
+                  ImageAssets.subcategoryCardImage,
+                  goToCategoryProductsListScreen),
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 0.75,
+              mainAxisSpacing: AppSize.s8,
+              crossAxisSpacing: AppSize.s8,
+            ),
+          ),
         ],
       ),
     );

@@ -2,7 +2,7 @@ import 'package:e_commerce/core/utils/values_manager.dart';
 import 'package:e_commerce/features/bottom_navigation_bar/categories_tab/presentation/widgets/categories_list.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/sub_categories_list.dart';
+import '../widgets/sub_categories_list.dart';
 
 class CategoriesTab extends StatelessWidget {
   const CategoriesTab({super.key});
