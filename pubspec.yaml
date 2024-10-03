@@ -49,6 +49,7 @@ dependencies:
   get_it: ^7.7.0
   injectable: ^2.4.4
   readmore: null
+  shared_preferences: ^2.3.2
   smooth_page_indicator: null
 
 dev_dependencies:

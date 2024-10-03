@@ -1,4 +1,5 @@
 import 'package:e_commerce/config/routes_manager/routes.dart';
+import 'package:e_commerce/core/cache/shared_pref.dart';
 import 'package:e_commerce/core/utils/assets_manager.dart';
 import 'package:e_commerce/core/utils/color_manager.dart';
 import 'package:e_commerce/core/utils/font_manager.dart';
@@ -70,12 +71,24 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 IconButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, Routes.cartRoute),
-                    icon: ImageIcon(
-                      AssetImage(IconsAssets.icCart),
-                      color: ColorManager.primary,
-                    ))
+                  onPressed: () =>
+                      Navigator.pushNamed(context, Routes.cartRoute),
+                  icon: ImageIcon(
+                    AssetImage(IconsAssets.icCart),
+                    color: ColorManager.primary,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    SharedPrefUtils.removeData('token');
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.signInRoute,
+                      (route) => false,
+                    );
+                  },
+                  icon: const Icon(Icons.logout),
+                ),
               ],
             ),
           )),

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:e_commerce/api%20manager/api_manager.dart';
 import 'package:e_commerce/core/api/api_constant.dart';
+import 'package:e_commerce/core/cache/shared_pref.dart';
 import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/features/auth/data/data_source/remote/base_auth_remote_data_source.dart';
 import 'package:e_commerce/features/auth/data/models/login_model.dart';
@@ -56,7 +57,7 @@ class AuthRemoteDataSourceImpl implements BaseAuthRemoteDataSource {
     var connectionResults = await Connectivity().checkConnectivity();
     if (connectionResults.contains(ConnectivityResult.wifi) ||
         connectionResults.contains(ConnectivityResult.mobile)) {
-      // Success Case
+      // Internet Connection Case
       var response = await Dio().post(
         ApiConstant.baseUrl + ApiConstant.loginEP,
         data: {
@@ -70,6 +71,8 @@ class AuthRemoteDataSourceImpl implements BaseAuthRemoteDataSource {
       );
       var loginModel = LoginModel.fromJson(response.data);
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        // Success Case
+        SharedPrefUtils.saveData(key: 'token', data: loginModel.token);
         return Right(loginModel);
       } else {
         // Server Error Case
