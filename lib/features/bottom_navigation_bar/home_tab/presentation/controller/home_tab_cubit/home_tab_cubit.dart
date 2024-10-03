@@ -50,4 +50,6 @@ class HomeTabCubit extends Cubit<HomeTabState> {
       },
     );
   }
+
+  static HomeTabCubit get(context) => BlocProvider.of(context);
 }

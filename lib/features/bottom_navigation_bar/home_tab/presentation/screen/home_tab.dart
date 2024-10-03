@@ -28,26 +28,26 @@ class HomeTab extends StatelessWidget {
             children: [
               const CustomAdsWidget(),
               CustomSectionBar(sectionNname: 'Categories', function: () {}),
-              state is HomeCategoriesSuccessState
-                  ? SizedBox(
+              state is HomeCategoriesLoadingState
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryDark,
+                      ),
+                    )
+                  : SizedBox(
                       height: 270.h,
                       child: GridView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return CustomCategoryWidget(
-                            category: state.categoryEntity.data![index],
+                            category: viewModel.categoriesList[index],
                           );
                         },
-                        itemCount: state.categoryEntity.data!.length,
+                        itemCount: viewModel.categoriesList.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                         ),
-                      ),
-                    )
-                  : Center(
-                      child: CircularProgressIndicator(
-                        color: ColorManager.primaryDark,
                       ),
                     ),
               SizedBox(height: 12.h),
