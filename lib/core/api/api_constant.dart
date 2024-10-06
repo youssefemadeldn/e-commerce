@@ -15,4 +15,7 @@ class ApiConstant {
 
   // https://ecommerce.routemisr.com/api/v1/products
   static const String getAllProductsEP = '/api/v1/products';
+
+  // https://ecommerce.routemisr.com/api/v1/cart
+  static const String addProductToCartEP = '/api/v1/cart';
 }
