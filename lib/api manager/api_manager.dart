@@ -35,4 +35,34 @@ class ApiManager {
       ),
     );
   }
+
+  Future<Response> deleteData(
+    String endpoint, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    return await dio.delete(
+      ApiConstant.baseUrl + endpoint,
+      data: body,
+      options: Options(
+        headers: headers,
+        validateStatus: (status) => true,
+      ),
+    );
+  }
+
+  Future<Response> updateData(
+    String endpoint, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    return await dio.put(
+      ApiConstant.baseUrl + endpoint,
+      data: body,
+      options: Options(
+        headers: headers,
+        validateStatus: (status) => true,
+      ),
+    );
+  }
 }

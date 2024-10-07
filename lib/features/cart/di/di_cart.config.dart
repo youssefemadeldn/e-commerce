@@ -36,23 +36,23 @@ import '../../bottom_navigation_bar/domain/use_cases/add_to_cart_use_case.dart'
     as _i1039;
 import '../../bottom_navigation_bar/presentation/controller/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart'
     as _i8;
-import '../../cart/data/data_source/remote/base_remote_cart_data_source.dart'
-    as _i939;
-import '../../cart/data/data_source/remote/remote_cart_data_source_impl.dart'
-    as _i152;
-import '../../cart/data/repo/cart_repo_impl.dart' as _i876;
-import '../../cart/domain/repo/base_cart_repo.dart' as _i205;
-import '../../cart/domain/use_case/get_items_in_cart_use_case.dart' as _i345;
-import '../../cart/presentation/controller/cubit/cart_cubit.dart' as _i636;
-import '../data/data_source/remote/base_remote_home_tab_data_source.dart'
-    as _i152;
-import '../data/data_source/remote/remote_home_tab_data_source_impl.dart'
-    as _i766;
-import '../data/rpo/home_tab_repo_impl.dart' as _i462;
-import '../domain/repo/base_home_tab_repo.dart' as _i944;
-import '../domain/use_case/get_all_brands_use_case.dart' as _i797;
-import '../domain/use_case/get_all_categories_use_case.dart' as _i28;
-import '../presentation/controller/home_tab_cubit/home_tab_cubit.dart' as _i473;
+import '../../home_tab/data/data_source/remote/base_remote_home_tab_data_source.dart'
+    as _i8;
+import '../../home_tab/data/data_source/remote/remote_home_tab_data_source_impl.dart'
+    as _i775;
+import '../../home_tab/data/rpo/home_tab_repo_impl.dart' as _i992;
+import '../../home_tab/domain/repo/base_home_tab_repo.dart' as _i815;
+import '../../home_tab/domain/use_case/get_all_brands_use_case.dart' as _i59;
+import '../../home_tab/domain/use_case/get_all_categories_use_case.dart'
+    as _i566;
+import '../../home_tab/presentation/controller/home_tab_cubit/home_tab_cubit.dart'
+    as _i946;
+import '../data/data_source/remote/base_remote_cart_data_source.dart' as _i82;
+import '../data/data_source/remote/remote_cart_data_source_impl.dart' as _i11;
+import '../data/repo/cart_repo_impl.dart' as _i234;
+import '../domain/repo/base_cart_repo.dart' as _i182;
+import '../domain/use_case/get_items_in_cart_use_case.dart' as _i658;
+import '../presentation/controller/cubit/cart_cubit.dart' as _i167;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -66,42 +66,43 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i480.ApiManager>(() => _i480.ApiManager());
-    gh.factory<_i939.BaseRemoteCartDataSource>(
-        () => _i152.RemoteCartDataSourceImpl());
+    gh.factory<_i82.BaseRemoteCartDataSource>(
+        () => _i11.RemoteCartDataSourceImpl());
     gh.factory<_i806.BaseAuthRemoteDataSource>(
         () => _i242.AuthRemoteDataSourceImpl());
     gh.factory<_i761.BaseRemoteBottomNavigationBarDataSource>(
         () => _i288.RemoteBottomNavigationBarDataSourceImpl());
-    gh.factory<_i205.BaseCartRepo>(() => _i876.CartRepoImpl(
-        baseRemoteCartDataSource: gh<_i939.BaseRemoteCartDataSource>()));
-    gh.factory<_i152.BaseRemoteHomeTabDataSource>(
-        () => _i766.RemoteHomeTabDataSourceImpl());
-    gh.factory<_i944.BaseHomeTabRepo>(() => _i462.HomeTabRepoImpl(
-        baseRemoteHomeTabDataSource: gh<_i152.BaseRemoteHomeTabDataSource>()));
+    gh.factory<_i182.BaseCartRepo>(() => _i234.CartRepoImpl(
+        baseRemoteCartDataSource: gh<_i82.BaseRemoteCartDataSource>()));
+    gh.factory<_i8.BaseRemoteHomeTabDataSource>(
+        () => _i775.RemoteHomeTabDataSourceImpl());
+    gh.factory<_i815.BaseHomeTabRepo>(() => _i992.HomeTabRepoImpl(
+        baseRemoteHomeTabDataSource: gh<_i8.BaseRemoteHomeTabDataSource>()));
     gh.factory<_i990.BaseBottomNavigationBarRepo>(() =>
         _i930.BottomNavigationBarRepoImpl(
             baseRemoteBottomNavigationBarDataSource:
                 gh<_i761.BaseRemoteBottomNavigationBarDataSource>()));
     gh.factory<_i527.BaseAuthRepo>(() => _i869.AuthRepoImpl(
         baseAuthRemoteDataSource: gh<_i806.BaseAuthRemoteDataSource>()));
-    gh.factory<_i797.GetAllBrandsUseCase>(() => _i797.GetAllBrandsUseCase(
-        baseHomeTabRepo: gh<_i944.BaseHomeTabRepo>()));
-    gh.factory<_i28.GetAllCategoriesUseCase>(() => _i28.GetAllCategoriesUseCase(
-        baseHomeTabRepo: gh<_i944.BaseHomeTabRepo>()));
-    gh.factory<_i345.GetItemsInCartUseCase>(() =>
-        _i345.GetItemsInCartUseCase(baseCartRepo: gh<_i205.BaseCartRepo>()));
+    gh.factory<_i59.GetAllBrandsUseCase>(() =>
+        _i59.GetAllBrandsUseCase(baseHomeTabRepo: gh<_i815.BaseHomeTabRepo>()));
+    gh.factory<_i566.GetAllCategoriesUseCase>(() =>
+        _i566.GetAllCategoriesUseCase(
+            baseHomeTabRepo: gh<_i815.BaseHomeTabRepo>()));
+    gh.factory<_i658.GetItemsInCartUseCase>(() =>
+        _i658.GetItemsInCartUseCase(baseCartRepo: gh<_i182.BaseCartRepo>()));
     gh.factory<_i694.LoginUseCase>(
         () => _i694.LoginUseCase(baseAuthRepo: gh<_i527.BaseAuthRepo>()));
     gh.factory<_i664.RegisterUseCase>(
         () => _i664.RegisterUseCase(baseAuthRepo: gh<_i527.BaseAuthRepo>()));
     gh.factory<_i1039.AddToCartUseCase>(() => _i1039.AddToCartUseCase(
         baseBottomNavigationBarRepo: gh<_i990.BaseBottomNavigationBarRepo>()));
-    gh.factory<_i473.HomeTabCubit>(() => _i473.HomeTabCubit(
-          getAllCategoriesUseCase: gh<_i28.GetAllCategoriesUseCase>(),
-          getAllBrandsUseCase: gh<_i797.GetAllBrandsUseCase>(),
+    gh.factory<_i946.HomeTabCubit>(() => _i946.HomeTabCubit(
+          getAllCategoriesUseCase: gh<_i566.GetAllCategoriesUseCase>(),
+          getAllBrandsUseCase: gh<_i59.GetAllBrandsUseCase>(),
         ));
-    gh.factory<_i636.CartCubit>(() => _i636.CartCubit(
-        getItemsInCartUseCase: gh<_i345.GetItemsInCartUseCase>()));
+    gh.factory<_i167.CartCubit>(() => _i167.CartCubit(
+        getItemsInCartUseCase: gh<_i658.GetItemsInCartUseCase>()));
     gh.factory<_i800.LoginCubit>(
         () => _i800.LoginCubit(gh<_i694.LoginUseCase>()));
     gh.factory<_i301.RegisterCubit>(() =>
