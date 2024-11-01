@@ -8,13 +8,14 @@ import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/features/auth/data/data_source/remote/base_auth_remote_data_source.dart';
 import 'package:e_commerce/features/auth/data/models/login_model.dart';
 import 'package:e_commerce/features/auth/data/models/register_model.dart';
+import 'package:e_commerce/features/auth/domain/entity/register_entity.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BaseAuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements BaseAuthRemoteDataSource {
   ApiManager apiManager = ApiManager();
   @override
-  Future<Either<Failure, RegisterModel>> register(String name, String email,
+  Future<Either<Failure, RegisterEntity>> register(String name, String email,
       String password, String rePassword, String phone) async {
     var connectivityResult = await Connectivity().checkConnectivity();
 
@@ -35,7 +36,9 @@ class AuthRemoteDataSourceImpl implements BaseAuthRemoteDataSource {
         ),
       );
 
-      var registerModel = RegisterModel.fromJson(response.data);
+      RegisterModel registerModel = RegisterModel.fromJson(response.data);
+
+      //  Mapping
 
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
         // Success Case
